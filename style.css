@@ -72,6 +72,31 @@ a.nav-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(233, 
 ::-webkit-scrollbar-thumb { background: #e94560; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #d03b54; }
 
+/* Glowing Scroll Progress Bar */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, #e94560, #ff6b81, #d03b54);
+    z-index: 9999;
+    box-shadow: 0 0 10px #e94560, 0 0 20px #ff6b81;
+    transition: width 0.1s ease-out;
+}
+
+/* Typewriter Cursor */
+.typewriter-text::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #e94560;
+    font-weight: bold;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     h1 { font-size: 2.8rem; }

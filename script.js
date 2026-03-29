@@ -79,3 +79,33 @@ window.addEventListener('resize', () => {
         });
     }
 });
+
+// Scroll Progress Bar
+window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    const progressBar = document.getElementById("progress-bar");
+    if(progressBar) progressBar.style.width = scrolled + "%";
+});
+
+// Typewriter Effect for the Hero Subtitle
+const textToType = "A reminder of where we started, how we grew, and how we held each other up when things got heavy.";
+const typeWriterElement = document.getElementById('intro-text');
+if (typeWriterElement) {
+    let i = 0;
+    function typeWriter() {
+        if (i < textToType.length) {
+            typeWriterElement.innerHTML += textToType.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50); // Typing speed
+        } else {
+            // Remove text cursor gracefully
+            setTimeout(() => {
+                typeWriterElement.classList.remove('typewriter-text');
+            }, 2000);
+        }
+    }
+    // Start typing effect slightly after page loads
+    setTimeout(typeWriter, 1500);
+}
