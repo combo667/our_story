@@ -35,7 +35,7 @@ const observerOptions = {
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting) {
+    if (entry.isIntersecting) {
       entry.target.classList.add('visible');
       observer.unobserve(entry.target);
     }
@@ -48,10 +48,10 @@ document.querySelectorAll('.chat-box, h2').forEach(el => {
 
 // Floating Heart Cursor Trail Effect
 let lastHeartTime = 0;
-document.addEventListener('mousemove', function(e) {
+document.addEventListener('mousemove', function (e) {
   const now = Date.now();
   // Spawn heart particles periodically to maintain great performance
-  if (now - lastHeartTime > 40) { 
+  if (now - lastHeartTime > 40) {
     lastHeartTime = now;
     const heart = document.createElement('div');
     heart.className = 'heart-trail';
@@ -62,7 +62,7 @@ document.addEventListener('mousemove', function(e) {
     heart.style.marginLeft = xOffset + 'px';
     heart.innerHTML = '❤️';
     document.body.appendChild(heart);
-    
+
     setTimeout(() => {
       heart.remove();
     }, 1000);
@@ -71,41 +71,41 @@ document.addEventListener('mousemove', function(e) {
 
 // Re-evaluate Vanilla Tilt on window resize
 window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768 && document.querySelectorAll(".chat-box")[0].vanillaTilt) {
-        document.querySelectorAll(".chat-box").forEach(el => el.vanillaTilt.destroy());
-    } else if (window.innerWidth > 768 && !document.querySelectorAll(".chat-box")[0].vanillaTilt) {
-        VanillaTilt.init(document.querySelectorAll(".chat-box"), {
-            max: 3, speed: 400, glare: true, "max-glare": 0.15, gyroscope: true
-        });
-    }
+  if (window.innerWidth <= 768 && document.querySelectorAll(".chat-box")[0].vanillaTilt) {
+    document.querySelectorAll(".chat-box").forEach(el => el.vanillaTilt.destroy());
+  } else if (window.innerWidth > 768 && !document.querySelectorAll(".chat-box")[0].vanillaTilt) {
+    VanillaTilt.init(document.querySelectorAll(".chat-box"), {
+      max: 3, speed: 400, glare: true, "max-glare": 0.15, gyroscope: true
+    });
+  }
 });
 
 // Scroll Progress Bar
 window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    const progressBar = document.getElementById("progress-bar");
-    if(progressBar) progressBar.style.width = scrolled + "%";
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  const progressBar = document.getElementById("progress-bar");
+  if (progressBar) progressBar.style.width = scrolled + "%";
 });
 
 // Typewriter Effect for the Hero Subtitle
 const textToType = "A reminder of where we started, how we grew, and how we held each other up when things got heavy.";
 const typeWriterElement = document.getElementById('intro-text');
 if (typeWriterElement) {
-    let i = 0;
-    function typeWriter() {
-        if (i < textToType.length) {
-            typeWriterElement.innerHTML += textToType.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50); // Typing speed
-        } else {
-            // Remove text cursor gracefully
-            setTimeout(() => {
-                typeWriterElement.classList.remove('typewriter-text');
-            }, 2000);
-        }
+  let i = 0;
+  function typeWriter() {
+    if (i < textToType.length) {
+      typeWriterElement.innerHTML += textToType.charAt(i);
+      i++;
+      setTimeout(typeWriter, 50); // Typing speed
+    } else {
+      // Remove text cursor gracefully
+      setTimeout(() => {
+        typeWriterElement.classList.remove('typewriter-text');
+      }, 2000);
     }
-    // Start typing effect slightly after page loads
-    setTimeout(typeWriter, 1500);
+  }
+  // Start typing effect slightly after page loads
+  setTimeout(typeWriter, 1500);
 }
